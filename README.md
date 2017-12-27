@@ -10,7 +10,6 @@
     
 ### Utilizado: 
     Spring Boot
-    Spring Security
     MySql
-    Template engine Thymeleaf
+    Thymeleaf Template engine 
     Materialize
