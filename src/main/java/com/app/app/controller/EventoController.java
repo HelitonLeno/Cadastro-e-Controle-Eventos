@@ -25,7 +25,7 @@ public class EventoController {
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
     public String form() {
-        return "/evento/FormEvento";
+        return "redirect:/evento/FormEvento";
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
