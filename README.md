@@ -6,7 +6,7 @@
 * local do evento
 * data do evento
 * horario do evento
-    * Cada evento pode se adicionar ou deletar os convidades 
+    * Cada evento pode se adicionar ou deletar os convidados 
     
 ## Utilizado: 
 * Spring Boot
