@@ -11,7 +11,7 @@
 <div class="container">
     <div th:replace="evento/Menu"></div>
 
-    <div th:each="evento : ${idEvento}">
+    <div th:each="evento : ${id}">
         <table class="stripped">
             <thead>
             <tr>
@@ -31,6 +31,7 @@
         <div class="col s12">
             <label class="novo-convidado center"><i class="material-icons">account_circle</i>Novo Convidado</label>
         </div>
+
         <form method="post">
             <div class="input-field col s12 m6">
                 <input id="nome" name="nomeConvidado" type="text"/>
@@ -41,13 +42,16 @@
                 <label for="rg">RG</label>
             </div>
             <div class="col s12 m3">
-                <button href="/{idEvento}" type="submit" class="waves-effect waves-light btn"><i
+                <button href="/{id}" type="submit" class="waves-effect waves-light btn"><i
                         class="material-icons left">add_circle_outline</i>Salvar
                 </button>
             </div>
         </form>
     </div>
 
+    <div class="card-panel teal lighten-2 center col s12 m12">
+       <h5>Convidados</h5>
+    </div>
 
     <table class="centered">
         <thead>

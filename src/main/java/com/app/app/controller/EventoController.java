@@ -53,7 +53,7 @@ public class EventoController {
     public ModelAndView detalhesEvento(@PathVariable("id") long id) {
         Evento evento = eventoRepository.findById(id);
         ModelAndView mav = new ModelAndView("DetalhesEvento");
-        mav.addObject("idEvento", evento);
+        mav.addObject("id", evento);
 
         Iterable<Convidado> convidados = convidadoRepository.findByEvento(evento);
         mav.addObject("convidados", convidados);
