@@ -25,7 +25,7 @@ public class EventoController {
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
     public String form() {
-        return "redirect:/evento/FormEvento";
+        return "FormEvento";
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
@@ -34,11 +34,11 @@ public class EventoController {
 
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique os campos");
-            return "redirect:/evento/FormEvento";
+            return "redirect:/FormEvento";
         }
 
         eventoRepository.save(evento);
-        return "redirect:/evento/FormEvento";
+        return "redirect:/FormEvento";
     }
 
     @RequestMapping("/")
