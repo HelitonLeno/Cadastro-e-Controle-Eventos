@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1 class="center">Detalhe evento</h1>
+    <h2><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">apps</i>Lista
+        de Eventos</a></h2>
+
+    <div class="container" th:each="evento : ${idEvento}">
+        <div class="row">
+            <p><span th:text="${evento.id}"></span></p>
+            <p><span th:text="${evento.nome}"></span></p>
+            <p><span th:text="${evento.local}"></span></p>
+            <p><span th:text="${evento.data}"></span></p>
+            <p><span th:text="${evento.horario}"></span></p>
+        </div>
+        <form method="post">
+            <div class="input-field col s6">
+                <input id="nome" name="nomeConvidado" type="text"/>
+                <label for="nome">Nome</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="rg" name="rg" type="number"/>
+                <label for="rg">RG</label>
+            </div>
+            <button href="/{idEvento}" type="submit" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Novo convidado</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Rg</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="convidado : ${convidados}">
+                    <td><span th:text="${convidado.nomeConvidado}"></span></td>
+                    <td><span th:text="${convidado.rg}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--<div class="row">
+            <div class="input-field col s6">
+                <p><span th:text="${convidado.nomeConvidado}"></span></p>
+                <label>Nome Convidado</label>
+            </div>
+            <div class="input-field col s3">
+                <p><span th:text="${convidado.rg}"></span></p>
+            </div>
+        </div>-->
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>
