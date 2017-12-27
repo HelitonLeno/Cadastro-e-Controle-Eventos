@@ -2,11 +2,11 @@
 
 ## Sistema para cadastrar eventos
 ### Pode incluir:
+    Cadastrar novo evento
     Cada evento pode se adicionar ou deletar os convidados
-    nome do evento
-    local do evento
-    data do evento
-    horario do evento 
+    Nome local do evento
+    Data do evento
+    Horário do evento 
     
 ### Utilizado: 
     Spring Boot
