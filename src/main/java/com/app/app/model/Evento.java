@@ -1,5 +1,7 @@
 package com.app.app.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,9 +13,13 @@ public class Evento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String local;
+    @NotBlank
     private String horario;
+    @NotBlank
     private String data;
 
     @OneToMany

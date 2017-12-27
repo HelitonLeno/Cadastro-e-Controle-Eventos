@@ -9,31 +9,32 @@
     <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css"/>
 </head>
 <body>
-<div class="container">
-    <h1 class="center">Lista de eventos</h1>
-    <h2><a href="/cadastro" class="waves-effect waves-light btn">
-        <i class="material-icons left">add_circle_outline</i>
-        Cadastrar Evento
-    </a></h2>
 
-    <table class="striped">
+<div class="container">
+    <div th:replace="evento/Menu"></div>
+
+    <table class="centered">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Nome</th>
             <th>Local</th>
             <th>Data</th>
             <th>Horario</th>
+            <th>Remover</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="evento : ${eventos}">
-            <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><span th:text="${evento.id}"></span></a></td>
-            <td><a th:text="${evento.nome}"></a></td>
-            <td><a th:text="${evento.local}"></a></td>
-            <td><a th:text="${evento.data}"></a></td>
-            <td><a th:text="${evento.horario}"></a></td>
-        </tr>
+            <tr th:each="evento : ${eventos}">
+                <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><span
+                        th:text="${evento.nome}"></span></a></td>
+                <!--<td><a th:text="${evento.nome}"></a></td>-->
+                <td><a th:text="${evento.local}"></a></td>
+                <td><a th:text="${evento.data}"></a></td>
+                <td><a th:text="${evento.horario}"></a></td>
+                <td><a class="waves-effect waves-light btn-small"
+                       th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.id)).build()}"
+                ><i class="material-icons">delete_forever</i></a></td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -5,10 +5,14 @@ import com.app.app.model.Evento;
 import com.app.app.repository.ConvidadoRepository;
 import com.app.app.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @org.springframework.stereotype.Controller
 public class EventoController {
@@ -25,7 +29,14 @@ public class EventoController {
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
-    public String form(Evento evento) {
+    public String form(@Valid Evento evento, BindingResult result,
+                       RedirectAttributes attributes) {
+
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os campos");
+            return "redirect:/cadastro";
+        }
+
         eventoRepository.save(evento);
         return "redirect:/cadastro";
     }
@@ -50,11 +61,37 @@ public class EventoController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String detalhesEventoPost(@PathVariable("id") long id, Convidado convidado) {
+    public String detalhesEventoPost(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result,
+                                     RedirectAttributes attributes) {
+
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique os campos");
+            return "redirect:/{id}";
+        }
+
         Evento evento = eventoRepository.findById(id);
         convidado.setEvento(evento);
-        System.out.println(convidadoRepository.count());
         convidadoRepository.save(convidado);
+        attributes.addFlashAttribute("mensagem", "Salvo com sucesso");
+
         return "redirect:/{id}";
+    }
+
+    @RequestMapping("/deletar")
+    public String deletarEvento(long id) {
+        Evento evento = eventoRepository.findById(id);
+        eventoRepository.delete(evento);
+
+        return "redirect:/eventos";
+    }
+
+    @RequestMapping("deletar_convidado")
+    public String deletarConvidado(String rg) {
+        Convidado convidado = convidadoRepository.findByRg(rg);
+        convidadoRepository.delete(rg);
+
+        Evento evento = convidado.getEvento();
+        String condigoLong = String.valueOf(evento.getId());
+        return "redirect:/" + condigoLong;
     }
 }

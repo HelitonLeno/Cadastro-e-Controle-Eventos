@@ -1,5 +1,7 @@
 package com.app.app.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -7,7 +9,9 @@ import java.io.Serializable;
 public class Convidado implements Serializable {
 
     @Id
+    @NotBlank
     private String rg;
+    @NotBlank
     private String nomeConvidado;
 
     @ManyToOne
