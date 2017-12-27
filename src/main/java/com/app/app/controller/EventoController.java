@@ -41,7 +41,7 @@ public class EventoController {
         return "redirect:/cadastro";
     }
 
-    @RequestMapping("/eventos")
+    @RequestMapping("/")
     public ModelAndView listaEventos() {
         ModelAndView mav = new ModelAndView("index");
         Iterable<Evento> eventos = eventoRepository.findAll();
@@ -82,7 +82,7 @@ public class EventoController {
         Evento evento = eventoRepository.findById(id);
         eventoRepository.delete(evento);
 
-        return "redirect:/eventos";
+        return "redirect:/";
     }
 
     @RequestMapping("deletar_convidado")
