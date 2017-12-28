@@ -34,11 +34,11 @@ public class EventoController {
 
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique os campos");
-            return "redirect:/FormEvento";
+            return "FormEvento";
         }
 
         eventoRepository.save(evento);
-        return "redirect:/FormEvento";
+        return "FormEvento";
     }
 
     @RequestMapping("/")
