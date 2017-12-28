@@ -14,7 +14,7 @@ target/
 *.iws
 *.iml
 *.ipr
-DataConfigurationProducao.java
+/src/main/java/com/app/app/DataConfigurationProducao.java
 
 ### NetBeans ###
 nbproject/private/
